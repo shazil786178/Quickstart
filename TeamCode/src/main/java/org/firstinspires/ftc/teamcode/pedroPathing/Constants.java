@@ -11,6 +11,10 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+//translational, drive, heading, centripetal PIDF need to be done.
+//https://pedropathing.com/docs/pathing/tuning/pids/translational
+// Link teaches different ways of tuning but not sure if we do that first then the PIDF stuff:
+//https://www.ctrlaltftc.com/the-pid-controller/tuning-methods-of-a-pid-controller
 public class Constants {
     public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
