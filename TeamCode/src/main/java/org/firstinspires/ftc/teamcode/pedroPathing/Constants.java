@@ -35,7 +35,7 @@ public class Constants {
             .forwardZeroPowerAcceleration(-33.082915508877946)
             .lateralZeroPowerAcceleration(-55.46050353712529)
             .translationalPIDFCoefficients(new PIDFCoefficients(0.05, 0, 0.005, 0.025));
-
+            //update the heading bc it dosent work
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
     public static TwoWheelConstants localizerConstants = new TwoWheelConstants()
