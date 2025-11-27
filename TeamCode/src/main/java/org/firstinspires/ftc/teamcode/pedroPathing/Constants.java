@@ -5,6 +5,8 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
 import com.pedropathing.ftc.drivetrains.MecanumConstants;
+import com.pedropathing.ftc.localization.Encoder;
+import com.pedropathing.ftc.localization.constants.ThreeWheelConstants;
 import com.pedropathing.ftc.localization.constants.TwoWheelConstants;
 import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
@@ -38,25 +40,23 @@ public class Constants {
             //update the heading bc it dosent work
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
-    public static TwoWheelConstants localizerConstants = new TwoWheelConstants()
-            .forwardEncoder_HardwareMapName("backLeft")
+    public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
+            .forwardTicksToInches(.001989436789)
+            .strafeTicksToInches(.001989436789)
+            .turnTicksToInches(.001989436789)
+            .leftPodY(1)
+            .rightPodY(-1)
+            .strafePodX(-2.5)
+            .leftEncoder_HardwareMapName("backLeft")
+            .rightEncoder_HardwareMapName("backRight")//change
             .strafeEncoder_HardwareMapName("frontRight")
-            .strafePodX(0)
-            .forwardPodY(8.5)
-            .forwardTicksToInches(0.001981915025393932915)
-            .strafeTicksToInches(0.001992445311527128)
-            .IMU_HardwareMapName("imu")
-            .IMU_Orientation(
-                    new RevHubOrientationOnRobot(
-                            RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                            RevHubOrientationOnRobot.UsbFacingDirection.FORWARD
-                    )
-            );
+            .leftEncoderDirection(Encoder.FORWARD)
+            .rightEncoderDirection(Encoder.FORWARD)
+            .strafeEncoderDirection(Encoder.FORWARD);
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
-                .pathConstraints(pathConstraints)
-                .twoWheelLocalizer(localizerConstants)
-                .mecanumDrivetrain(driveConstants)
+                .threeWheelLocalizer(localizerConstants)
+                /* other builder steps */
                 .build();
     }
 }
